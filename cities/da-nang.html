@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danang Beach Resort & Spa — BookingHotel</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <a class="logo" href="home.html">
+      <img src="logo.png" style="width:50px;height:50px;" alt="logo">
+      BookingHotel<span class="logo-dot">.COM</span>
+    </a>
+    <nav class="header-nav">
+      <a class="h-nav-link" href="home.html"><i class="fas fa-home"></i> Trang Chủ</a>
+      <a class="h-nav-link active" href="double_room.html"><i class="fas fa-bed"></i> Phòng Đôi</a>
+      <a class="h-nav-link" href="#"><i class="fas fa-bed"></i> Phòng Đơn</a>
+      <a class="h-nav-link" href="#"><i class="fas fa-users"></i> Gia Đình</a>
+      <a class="h-nav-link" href="#"><i class="fas fa-swimming-pool"></i> Resort</a>
+      <a class="h-nav-link" href="#"><i class="fas fa-tag"></i> Ưu Đãi</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn-header btn-outline-w" href="#"><i class="fas fa-globe"></i> VN · ₫</a>
+      <a class="btn-header btn-outline-w" href="#">Đăng nhập</a>
+      <a class="btn-header btn-yellow" href="#">Đăng ký</a>
+    </div>
+  </div>
+  <div class="header-sub">
+    <div class="header-sub-inner">
+      <span class="sub-link"><i class="fas fa-hotel"></i> Khách sạn</span>
+      <span class="sub-link"><i class="fas fa-plane"></i> Chuyến bay</span>
+      <span class="sub-link"><i class="fas fa-car"></i> Thuê xe</span>
+      <span class="sub-link"><i class="fas fa-map-marked-alt"></i> Điểm tham quan</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ BREADCRUMB ════════════════════════════════════ -->
+<div class="detail-breadcrumb">
+  <a href="home.html"><i class="fas fa-home"></i> Trang chủ</a>
+  <i class="fas fa-chevron-right"></i>
+  <a href="double_room.html">Phòng Đôi tại Việt Nam</a>
+  <i class="fas fa-chevron-right"></i>
+  <a href="#">Đà Nẵng</a>
+  <i class="fas fa-chevron-right"></i>
+  <span>Danang Beach Resort & Spa</span>
+</div>
+
+<!-- ═══ GALLERY ═══════════════════════════════════════ -->
+<!-- Gợi ý thay ảnh: tạo thư mục images/ cùng cấp file HTML, rồi đặt ảnh theo tên:
+     da-nang-1.jpg, da-nang-2.jpg, da-nang-3.jpg, da-nang-4.jpg, da-nang-5.jpg
+     hoặc thay trực tiếp src="..." bằng link ảnh bạn lấy được. -->
+<div class="gallery">
+  <div class="gal-item gal-main">
+    <img src="images/da-nang-1.jpg" alt="Danang Beach Resort & Spa ảnh chính">
+  </div>
+  <div class="gal-item">
+    <img src="images/da-nang-2.jpg" alt="Danang Beach Resort & Spa ảnh 2">
+  </div>
+  <div class="gal-item">
+    <img src="images/da-nang-3.jpg" alt="Danang Beach Resort & Spa ảnh 3">
+  </div>
+  <div class="gal-item">
+    <img src="images/da-nang-4.jpg" alt="Danang Beach Resort & Spa ảnh 4">
+  </div>
+  <div class="gal-item gal-more">
+    <img src="images/da-nang-5.jpg" alt="Danang Beach Resort & Spa ảnh 5">
+  </div>
+</div>
+
+<!-- ═══ DETAIL LAYOUT ════════════════════════════════ -->
+<div class="detail-layout">
+
+  <!-- LEFT COLUMN -->
+  <div class="detail-main">
+
+    <div class="detail-header">
+      <div class="detail-stars">★★★★★</div>
+      <h1 class="detail-name">Danang Beach Resort & Spa</h1>
+      <div class="detail-meta-row">
+        <div class="dm-item"><i class="fas fa-map-marker-alt"></i> Đường Võ Nguyên Giáp, Ngũ Hành Sơn, Đà Nẵng</div>
+        <div class="dm-item"><i class="fas fa-map"></i> <a href="#">Xem trên bản đồ</a></div>
+        <div class="dm-item"><i class="fas fa-phone"></i> Hotline: 1900 0000</div>
+      </div>
+      <div class="detail-score-row">
+        <div class="ds-score">9.4</div>
+        <div>
+          <div class="ds-label">Xuất Sắc</div>
+          <div class="ds-reviews">3.128 đánh giá đã được xác minh</div>
+        </div>
+        <div style="margin-left:auto">
+          <button onclick="toggleWish(this)" style="background:none;border:1.5px solid var(--border);border-radius:var(--r);padding:8px 14px;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:.84rem;color:var(--text)">
+            <i class="far fa-heart" style="color:var(--red)"></i> Lưu
+          </button>
+        </div>
+      </div>
+      <div class="detail-badges">
+        <span class="d-badge blue"><i class="fas fa-award"></i> #1 Resort Biển Đà Nẵng 2025</span>
+        <span class="d-badge blue"><i class="fas fa-gem"></i> Best Beach Resort</span>
+        <span class="d-badge green"><i class="fas fa-leaf"></i> Eco Certified</span>
+        <span class="d-badge green"><i class="fas fa-undo"></i> Hủy miễn phí</span>
+        <span class="d-badge blue"><i class="fas fa-shield-alt"></i> Đã xác minh vệ sinh</span>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h3><i class="fas fa-info-circle"></i> Về Khách Sạn</h3>
+      <p class="detail-desc">Danang Beach Resort & Spa nằm gần bãi biển Mỹ Khê, nơi nổi tiếng với bờ cát dài, nước biển trong và không khí nghỉ dưỡng sôi động. Thiết kế mở giúp tận dụng ánh sáng tự nhiên, gió biển và tầm nhìn thoáng đãng hướng ra đại dương.<br><br>
+        <strong>Ocean Deluxe King</strong> rộng 50m² với ban công riêng hướng biển. Không gian phòng sử dụng gam màu xanh biển và trắng nhẹ, kết hợp nội thất gỗ tạo cảm giác thư thái đúng chất nghỉ dưỡng ven biển.<br><br>
+        Resort có hồ bơi ngoài trời, spa, nhà hàng hải sản, dịch vụ thể thao biển và xe đưa đón trung tâm — phù hợp cho nhóm bạn, cặp đôi hoặc gia đình nhỏ.</p>
+    </div>
+
+    <div class="detail-section">
+      <h3><i class="fas fa-bed"></i> Thông Tin Phòng Đôi</h3>
+      <div class="room-info-grid">
+        <div class="ri-item">
+          <div class="ri-icon"><i class="fas fa-ruler-combined"></i></div>
+          <div><span class="ri-label">Diện Tích</span><span class="ri-val">50m²</span></div>
+        </div>
+        <div class="ri-item">
+          <div class="ri-icon"><i class="fas fa-bed"></i></div>
+          <div><span class="ri-label">Loại Giường</span><span class="ri-val">King Size 180×200cm</span></div>
+        </div>
+        <div class="ri-item">
+          <div class="ri-icon"><i class="fas fa-users"></i></div>
+          <div><span class="ri-label">Sức Chứa</span><span class="ri-val">Tối đa 2 người lớn</span></div>
+        </div>
+        <div class="ri-item">
+          <div class="ri-icon"><i class="fas fa-eye"></i></div>
+          <div><span class="ri-label">Tầm Nhìn</span><span class="ri-val">Biển Mỹ Khê / Hồ bơi</span></div>
+        </div>
+        <div class="ri-item">
+          <div class="ri-icon"><i class="fas fa-bath"></i></div>
+          <div><span class="ri-label">Phòng Tắm</span><span class="ri-val">1 Riêng · Bathtub + Shower</span></div>
+        </div>
+        <div class="ri-item">
+          <div class="ri-icon"><i class="fas fa-door-closed"></i></div>
+          <div><span class="ri-label">Tầng</span><span class="ri-val">Tầng 3–8 (Ocean Wing)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h3><i class="fas fa-concierge-bell"></i> Tiện Nghi Trong Phòng</h3>
+      <div class="amenities-grid">
+        <div class="am-item"><i class="fas fa-wifi"></i> WiFi tốc độ cao</div>
+        <div class="am-item"><i class="fas fa-snowflake"></i> Điều hòa</div>
+        <div class="am-item"><i class="fas fa-tv"></i> Smart TV 48"</div>
+        <div class="am-item"><i class="fas fa-door-open"></i> Ban công view biển Mỹ Khê</div>
+        <div class="am-item"><i class="fas fa-bath"></i> Phòng tắm marble</div>
+        <div class="am-item"><i class="fas fa-wine-glass"></i> Mini bar</div>
+        <div class="am-item"><i class="fas fa-check-circle"></i> Máy pha cà phê</div>
+        <div class="am-item"><i class="fas fa-lock"></i> Két an toàn</div>
+        <div class="am-item"><i class="fas fa-concierge-bell"></i> Dịch vụ phòng 24/7</div>
+        <div class="am-item"><i class="fas fa-spa"></i> Bộ sản phẩm tắm hương biển</div>
+        <div class="am-item"><i class="fas fa-tshirt"></i> Áo tắm & dép resort</div>
+        <div class="am-item"><i class="fas fa-bed"></i> Gối mềm & cứng tùy chọn</div>
+        
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h3><i class="fas fa-building"></i> Tiện Ích Khách Sạn</h3>
+      <div class="amenities-grid">
+        <div class="am-item"><i class="fas fa-swimming-pool"></i> Hồ bơi ngoài trời</div>
+        <div class="am-item"><i class="fas fa-spa"></i> Beach Spa</div>
+        <div class="am-item"><i class="fas fa-utensils"></i> Nhà hàng hải sản</div>
+        <div class="am-item"><i class="fas fa-bicycle"></i> Xe đạp ven biển</div>
+        <div class="am-item"><i class="fas fa-ship"></i> Khu thể thao biển</div>
+        <div class="am-item"><i class="fas fa-map-marked-alt"></i> Tour Bà Nà Hills / Sơn Trà</div>
+        <div class="am-item"><i class="fas fa-pray"></i> Yoga & thiền định</div>
+        <div class="am-item"><i class="fas fa-shuttle-van"></i> Đưa đón trung tâm</div>
+        <div class="am-item"><i class="fas fa-concierge-bell"></i> Dịch vụ phòng 24/7</div>
+        
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h3><i class="fas fa-file-alt"></i> Chính Sách Khách Sạn</h3>
+      <div class="policies-list">
+        <div class="policy-row">
+          <div class="policy-icon"><i class="fas fa-sign-in-alt"></i></div>
+          <div><div class="policy-title">Nhận phòng (Check-in)</div><div class="policy-desc">Từ 14:00 · Check-in sớm theo yêu cầu (phụ phí)</div></div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-icon"><i class="fas fa-sign-out-alt"></i></div>
+          <div><div class="policy-title">Trả phòng (Check-out)</div><div class="policy-desc">Trước 12:00 · Late check-out đến 14:00 (miễn phí)</div></div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-icon"><i class="fas fa-undo-alt"></i></div>
+          <div><div class="policy-title">Chính sách hủy phòng</div><div class="policy-desc">Hủy miễn phí trước 48 giờ · Phí 1 đêm nếu hủy muộn hơn</div></div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-icon"><i class="fas fa-smoking-ban"></i></div>
+          <div><div class="policy-title">Hút thuốc</div><div class="policy-desc">Không hút thuốc trong phòng · Khu vực hút thuốc riêng</div></div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-icon"><i class="fas fa-paw"></i></div>
+          <div><div class="policy-title">Thú cưng</div><div class="policy-desc">Không chấp nhận thú cưng</div></div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-icon"><i class="fas fa-baby"></i></div>
+          <div><div class="policy-title">Trẻ em</div><div class="policy-desc">Trẻ dưới 12 tuổi: miễn phí khi dùng chung giường bố mẹ</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end detail-main -->
+
+  <!-- RIGHT COLUMN: Booking Sidebar -->
+  <div class="booking-sidebar">
+    <div class="book-card">
+      <div class="book-card-header">
+        <div style="font-size:.82rem;opacity:.8;margin-bottom:4px">Ocean Deluxe King · 50m²</div>
+        <div class="book-price-row">
+          <div class="book-price">2.500.000₫</div>
+          <div class="book-price-unit">/đêm</div>
+        </div>
+        <div class="book-price-old">Giá gốc: 3.200.000₫</div>
+        <div class="book-price-save"><i class="fas fa-tag"></i> Tiết kiệm 700.000₫ · Giảm 22%</div>
+      </div>
+      <div class="book-card-body">
+        <div class="book-dates">
+          <div class="book-date-row">
+            <div class="book-date-field">
+              <span class="bdf-label">Nhận phòng</span>
+              <div class="bdf-val"><input type="date" id="checkin"></div>
+            </div>
+            <div class="book-date-field">
+              <span class="bdf-label">Trả phòng</span>
+              <div class="bdf-val"><input type="date" id="checkout"></div>
+            </div>
+          </div>
+        </div>
+        <div class="book-guests">
+          <i class="fas fa-user-friends"></i>
+          <div class="book-guests-inner">
+            <span class="bg-label">Số khách</span>
+            <div class="bg-val">
+              <select>
+                <option>1 người lớn</option>
+                <option selected>2 người lớn</option>
+                <option>2 người lớn + 1 trẻ em</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div style="border:1.5px solid var(--border);border-radius:var(--r);padding:10px 12px;margin-bottom:12px">
+          <span style="font-size:.68rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px">Loại phòng</span>
+          <select style="border:none;outline:none;font-size:.9rem;font-weight:600;color:var(--text);background:transparent;width:100%;cursor:pointer">
+            <option>Ocean Deluxe King</option>
+<option>Premier Ocean View</option>
+<option>Family Beach Suite</option>
+          </select>
+        </div>
+        <div class="book-summary">
+          <div class="bs-row"><span class="bs-label">2.500.000₫ × 2 đêm</span><span class="bs-val">5.000.000₫</span></div>
+          <div class="bs-row"><span class="bs-label">Bữa sáng (2 người × 2 ngày)</span><span class="bs-val" style="color:var(--green)">Miễn phí</span></div>
+          <div class="bs-row"><span class="bs-label">Thuế &amp; phí dịch vụ (10%)</span><span class="bs-val">500.000₫</span></div>
+          <div class="bs-row"><span class="bs-label">Ưu đãi BookingHotel</span><span class="bs-val" style="color:var(--green)">-250.000₫</span></div>
+          <div class="bs-total">
+            <span>Tổng thanh toán</span>
+            <span class="bs-total-val">5.250.000₫</span>
+          </div>
+        </div>
+        <button class="btn-book-now" onclick="openModal()">
+          <i class="fas fa-lock"></i> Đặt Phòng Ngay
+        </button>
+        <button class="btn-wishlist-book" onclick="toggleWish(this)">
+          <i class="far fa-heart"></i> Lưu vào danh sách
+        </button>
+        <div class="book-trust">
+          <div class="bt-item"><i class="fas fa-check-circle"></i> Hủy miễn phí 48h</div>
+          <div class="bt-item"><i class="fas fa-lock"></i> Thanh toán an toàn</div>
+          <div class="bt-item"><i class="fas fa-medal"></i> Giá tốt nhất đảm bảo</div>
+          <div class="bt-item"><i class="fas fa-headset"></i> Hỗ trợ 24/7</div>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;margin-top:14px;box-shadow:var(--sh-sm)">
+      <div style="font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:6px"><i class="fas fa-info-circle" style="color:var(--blue)"></i> Thông tin quan trọng</div>
+      <div style="font-size:.78rem;color:var(--muted);line-height:1.7">
+        ✓ Check-in từ <strong>14:00</strong>, Check-out trước <strong>12:00</strong><br>
+        ✓ Xuất trình CCCD/Hộ chiếu khi nhận phòng<br>
+        ✓ Thẻ tín dụng cần cho khoản đặt cọc<br>
+        ✓ Không hoàn tiền nếu hủy trong 48 giờ<br>
+        ✓ <strong style="color:var(--red)">Chỉ còn 3 phòng view biển!</strong>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end detail-layout -->
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <a class="f-logo" href="home.html">BookingHotel<span>.com</span></a>
+        <p class="f-desc">Nền tảng đặt phòng khách sạn uy tín hàng đầu Việt Nam. Giá tốt nhất được đảm bảo, hủy miễn phí linh hoạt.</p>
+        <div class="f-socials">
+          <a class="f-soc" href="#"><i class="fab fa-facebook-f"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-instagram"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-tiktok"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="f-col"><h5>Hỗ Trợ</h5><ul>
+        <li><a href="#">Trung tâm trợ giúp</a></li>
+        <li><a href="#">Quản lý đặt phòng</a></li>
+        <li><a href="#">Chính sách hoàn tiền</a></li>
+        <li><a href="#">Liên hệ 24/7</a></li>
+      </ul></div>
+      <div class="f-col"><h5>Khám Phá</h5><ul>
+        <li><a href="double_room.html">Phòng Đôi</a></li>
+        <li><a href="#">Khách sạn 5 sao</a></li>
+        <li><a href="#">Resort biển</a></li>
+        <li><a href="#">Phú Quốc</a></li>
+      </ul></div>
+      <div class="f-col"><h5>Về Chúng Tôi</h5><ul>
+        <li><a href="#">Giới thiệu</a></li>
+        <li><a href="#">Điều khoản sử dụng</a></li>
+        <li><a href="#">Chính sách bảo mật</a></li>
+        <li><a href="#">Tuyển dụng</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 BookingHotel Vietnam. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-box">
+    <div class="modal-icon"><i class="fas fa-check-circle"></i></div>
+    <h2>Đặt Phòng Thành Công!</h2>
+    <p>Cảm ơn bạn đã tin tưởng <strong>BookingHotel</strong>. Email xác nhận đã được gửi. Chúng tôi sẽ liên hệ xác nhận trong 15 phút.</p>
+    <div class="modal-ref">Mã đặt phòng: <strong>BH-2026-54871</strong></div>
+    <div style="display:flex;gap:10px;justify-content:center">
+      <a href="home.html" class="btn-modal">Về Trang Chủ</a>
+      <button onclick="closeModal()" style="background:none;border:1.5px solid var(--border);border-radius:var(--r);padding:11px 20px;cursor:pointer;font-size:.88rem">Đóng</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(){document.getElementById('bookingModal').classList.add('open');}
+function closeModal(){document.getElementById('bookingModal').classList.remove('open');}
+document.getElementById('bookingModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+function toggleWish(btn){const i=btn.querySelector('i');if(i){i.classList.toggle('far');i.classList.toggle('fas');}}
+const t=new Date(),d1=new Date(t),d2=new Date(t);
+d1.setDate(t.getDate()+1);d2.setDate(t.getDate()+3);
+const fmt=d=>d.toISOString().split('T')[0];
+document.getElementById('checkin').value=fmt(d1);
+document.getElementById('checkout').value=fmt(d2);
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danang Beach Resort & Spa — BookingHotel</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <a class="logo" href="home.html">
+      <img src="logo.png" style="width:50px;height:50px;" alt="logo">
+      BookingHotel<span class="logo-dot">.COM</span>
+    </a>
+    <nav class="header-nav">
+      <a class="h-nav-link" href="home.html"><i class="fas fa-home"></i> Trang Chủ</a>
+      <a class="h-nav-link active" href="double_room.html"><i class="fas fa-bed"></i> Phòng Đôi</a>
+      <a class="h-nav-link" href="#"><i class="fas fa-bed"></i> Phòng Đơn</a>
+      <a class="h-nav-link" href="#"><i class="fas fa-users"></i> Gia Đình</a>
+      <a class="h-nav-link" href="#"><i class="fas fa-swimming-pool"></i> Resort</a>
+      <a class="h-nav-link" href="#"><i class="fas fa-tag"></i> Ưu Đãi</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn-header btn-outline-w" href="#"><i class="fas fa-globe"></i> VN · ₫</a>
+      <a class="btn-header btn-outline-w" href="#">Đăng nhập</a>
+      <a class="btn-header btn-yellow" href="#">Đăng ký</a>
+    </div>
+  </div>
+  <div class="header-sub">
+    <div class="header-sub-inner">
+      <span class="sub-link"><i class="fas fa-hotel"></i> Khách sạn</span>
+      <span class="sub-link"><i class="fas fa-plane"></i> Chuyến bay</span>
+      <span class="sub-link"><i class="fas fa-car"></i> Thuê xe</span>
+      <span class="sub-link"><i class="fas fa-map-marked-alt"></i> Điểm tham quan</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ BREADCRUMB ════════════════════════════════════ -->
+<div class="detail-breadcrumb">
+  <a href="home.html"><i class="fas fa-home"></i> Trang chủ</a>
+  <i class="fas fa-chevron-right"></i>
+  <a href="double_room.html">Phòng Đôi tại Việt Nam</a>
+  <i class="fas fa-chevron-right"></i>
+  <a href="#">Đà Nẵng</a>
+  <i class="fas fa-chevron-right"></i>
+  <span>Danang Beach Resort & Spa</span>
+</div>
+
+<!-- ═══ GALLERY ═══════════════════════════════════════ -->
+<!-- Gợi ý thay ảnh: tạo thư mục images/ cùng cấp file HTML, rồi đặt ảnh theo tên:
+     da-nang-1.jpg, da-nang-2.jpg, da-nang-3.jpg, da-nang-4.jpg, da-nang-5.jpg
+     hoặc thay trực tiếp src="..." bằng link ảnh bạn lấy được. -->
+<div class="gallery">
+  <div class="gal-item gal-main">
+    <img src="images/da-nang-1.jpg" alt="Danang Beach Resort & Spa ảnh chính">
+  </div>
+  <div class="gal-item">
+    <img src="images/da-nang-2.jpg" alt="Danang Beach Resort & Spa ảnh 2">
+  </div>
+  <div class="gal-item">
+    <img src="images/da-nang-3.jpg" alt="Danang Beach Resort & Spa ảnh 3">
+  </div>
+  <div class="gal-item">
+    <img src="images/da-nang-4.jpg" alt="Danang Beach Resort & Spa ảnh 4">
+  </div>
+  <div class="gal-item gal-more">
+    <img src="images/da-nang-5.jpg" alt="Danang Beach Resort & Spa ảnh 5">
+  </div>
+</div>
+
+<!-- ═══ DETAIL LAYOUT ════════════════════════════════ -->
+<div class="detail-layout">
+
+  <!-- LEFT COLUMN -->
+  <div class="detail-main">
+
+    <div class="detail-header">
+      <div class="detail-stars">★★★★★</div>
+      <h1 class="detail-name">Danang Beach Resort & Spa</h1>
+      <div class="detail-meta-row">
+        <div class="dm-item"><i class="fas fa-map-marker-alt"></i> Đường Võ Nguyên Giáp, Ngũ Hành Sơn, Đà Nẵng</div>
+        <div class="dm-item"><i class="fas fa-map"></i> <a href="#">Xem trên bản đồ</a></div>
+        <div class="dm-item"><i class="fas fa-phone"></i> Hotline: 1900 0000</div>
+      </div>
+      <div class="detail-score-row">
+        <div class="ds-score">9.4</div>
+        <div>
+          <div class="ds-label">Xuất Sắc</div>
+          <div class="ds-reviews">3.128 đánh giá đã được xác minh</div>
+        </div>
+        <div style="margin-left:auto">
+          <button onclick="toggleWish(this)" style="background:none;border:1.5px solid var(--border);border-radius:var(--r);padding:8px 14px;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:.84rem;color:var(--text)">
+            <i class="far fa-heart" style="color:var(--red)"></i> Lưu
+          </button>
+        </div>
+      </div>
+      <div class="detail-badges">
+        <span class="d-badge blue"><i class="fas fa-award"></i> #1 Resort Biển Đà Nẵng 2025</span>
+        <span class="d-badge blue"><i class="fas fa-gem"></i> Best Beach Resort</span>
+        <span class="d-badge green"><i class="fas fa-leaf"></i> Eco Certified</span>
+        <span class="d-badge green"><i class="fas fa-undo"></i> Hủy miễn phí</span>
+        <span class="d-badge blue"><i class="fas fa-shield-alt"></i> Đã xác minh vệ sinh</span>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h3><i class="fas fa-info-circle"></i> Về Khách Sạn</h3>
+      <p class="detail-desc">Danang Beach Resort & Spa nằm gần bãi biển Mỹ Khê, nơi nổi tiếng với bờ cát dài, nước biển trong và không khí nghỉ dưỡng sôi động. Thiết kế mở giúp tận dụng ánh sáng tự nhiên, gió biển và tầm nhìn thoáng đãng hướng ra đại dương.<br><br>
+        <strong>Ocean Deluxe King</strong> rộng 50m² với ban công riêng hướng biển. Không gian phòng sử dụng gam màu xanh biển và trắng nhẹ, kết hợp nội thất gỗ tạo cảm giác thư thái đúng chất nghỉ dưỡng ven biển.<br><br>
+        Resort có hồ bơi ngoài trời, spa, nhà hàng hải sản, dịch vụ thể thao biển và xe đưa đón trung tâm — phù hợp cho nhóm bạn, cặp đôi hoặc gia đình nhỏ.</p>
+    </div>
+
+    <div class="detail-section">
+      <h3><i class="fas fa-bed"></i> Thông Tin Phòng Đôi</h3>
+      <div class="room-info-grid">
+        <div class="ri-item">
+          <div class="ri-icon"><i class="fas fa-ruler-combined"></i></div>
+          <div><span class="ri-label">Diện Tích</span><span class="ri-val">50m²</span></div>
+        </div>
+        <div class="ri-item">
+          <div class="ri-icon"><i class="fas fa-bed"></i></div>
+          <div><span class="ri-label">Loại Giường</span><span class="ri-val">King Size 180×200cm</span></div>
+        </div>
+        <div class="ri-item">
+          <div class="ri-icon"><i class="fas fa-users"></i></div>
+          <div><span class="ri-label">Sức Chứa</span><span class="ri-val">Tối đa 2 người lớn</span></div>
+        </div>
+        <div class="ri-item">
+          <div class="ri-icon"><i class="fas fa-eye"></i></div>
+          <div><span class="ri-label">Tầm Nhìn</span><span class="ri-val">Biển Mỹ Khê / Hồ bơi</span></div>
+        </div>
+        <div class="ri-item">
+          <div class="ri-icon"><i class="fas fa-bath"></i></div>
+          <div><span class="ri-label">Phòng Tắm</span><span class="ri-val">1 Riêng · Bathtub + Shower</span></div>
+        </div>
+        <div class="ri-item">
+          <div class="ri-icon"><i class="fas fa-door-closed"></i></div>
+          <div><span class="ri-label">Tầng</span><span class="ri-val">Tầng 3–8 (Ocean Wing)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h3><i class="fas fa-concierge-bell"></i> Tiện Nghi Trong Phòng</h3>
+      <div class="amenities-grid">
+        <div class="am-item"><i class="fas fa-wifi"></i> WiFi tốc độ cao</div>
+        <div class="am-item"><i class="fas fa-snowflake"></i> Điều hòa</div>
+        <div class="am-item"><i class="fas fa-tv"></i> Smart TV 48"</div>
+        <div class="am-item"><i class="fas fa-door-open"></i> Ban công view biển Mỹ Khê</div>
+        <div class="am-item"><i class="fas fa-bath"></i> Phòng tắm marble</div>
+        <div class="am-item"><i class="fas fa-wine-glass"></i> Mini bar</div>
+        <div class="am-item"><i class="fas fa-check-circle"></i> Máy pha cà phê</div>
+        <div class="am-item"><i class="fas fa-lock"></i> Két an toàn</div>
+        <div class="am-item"><i class="fas fa-concierge-bell"></i> Dịch vụ phòng 24/7</div>
+        <div class="am-item"><i class="fas fa-spa"></i> Bộ sản phẩm tắm hương biển</div>
+        <div class="am-item"><i class="fas fa-tshirt"></i> Áo tắm & dép resort</div>
+        <div class="am-item"><i class="fas fa-bed"></i> Gối mềm & cứng tùy chọn</div>
+        
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h3><i class="fas fa-building"></i> Tiện Ích Khách Sạn</h3>
+      <div class="amenities-grid">
+        <div class="am-item"><i class="fas fa-swimming-pool"></i> Hồ bơi ngoài trời</div>
+        <div class="am-item"><i class="fas fa-spa"></i> Beach Spa</div>
+        <div class="am-item"><i class="fas fa-utensils"></i> Nhà hàng hải sản</div>
+        <div class="am-item"><i class="fas fa-bicycle"></i> Xe đạp ven biển</div>
+        <div class="am-item"><i class="fas fa-ship"></i> Khu thể thao biển</div>
+        <div class="am-item"><i class="fas fa-map-marked-alt"></i> Tour Bà Nà Hills / Sơn Trà</div>
+        <div class="am-item"><i class="fas fa-pray"></i> Yoga & thiền định</div>
+        <div class="am-item"><i class="fas fa-shuttle-van"></i> Đưa đón trung tâm</div>
+        <div class="am-item"><i class="fas fa-concierge-bell"></i> Dịch vụ phòng 24/7</div>
+        
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h3><i class="fas fa-file-alt"></i> Chính Sách Khách Sạn</h3>
+      <div class="policies-list">
+        <div class="policy-row">
+          <div class="policy-icon"><i class="fas fa-sign-in-alt"></i></div>
+          <div><div class="policy-title">Nhận phòng (Check-in)</div><div class="policy-desc">Từ 14:00 · Check-in sớm theo yêu cầu (phụ phí)</div></div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-icon"><i class="fas fa-sign-out-alt"></i></div>
+          <div><div class="policy-title">Trả phòng (Check-out)</div><div class="policy-desc">Trước 12:00 · Late check-out đến 14:00 (miễn phí)</div></div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-icon"><i class="fas fa-undo-alt"></i></div>
+          <div><div class="policy-title">Chính sách hủy phòng</div><div class="policy-desc">Hủy miễn phí trước 48 giờ · Phí 1 đêm nếu hủy muộn hơn</div></div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-icon"><i class="fas fa-smoking-ban"></i></div>
+          <div><div class="policy-title">Hút thuốc</div><div class="policy-desc">Không hút thuốc trong phòng · Khu vực hút thuốc riêng</div></div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-icon"><i class="fas fa-paw"></i></div>
+          <div><div class="policy-title">Thú cưng</div><div class="policy-desc">Không chấp nhận thú cưng</div></div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-icon"><i class="fas fa-baby"></i></div>
+          <div><div class="policy-title">Trẻ em</div><div class="policy-desc">Trẻ dưới 12 tuổi: miễn phí khi dùng chung giường bố mẹ</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end detail-main -->
+
+  <!-- RIGHT COLUMN: Booking Sidebar -->
+  <div class="booking-sidebar">
+    <div class="book-card">
+      <div class="book-card-header">
+        <div style="font-size:.82rem;opacity:.8;margin-bottom:4px">Ocean Deluxe King · 50m²</div>
+        <div class="book-price-row">
+          <div class="book-price">2.500.000₫</div>
+          <div class="book-price-unit">/đêm</div>
+        </div>
+        <div class="book-price-old">Giá gốc: 3.200.000₫</div>
+        <div class="book-price-save"><i class="fas fa-tag"></i> Tiết kiệm 700.000₫ · Giảm 22%</div>
+      </div>
+      <div class="book-card-body">
+        <div class="book-dates">
+          <div class="book-date-row">
+            <div class="book-date-field">
+              <span class="bdf-label">Nhận phòng</span>
+              <div class="bdf-val"><input type="date" id="checkin"></div>
+            </div>
+            <div class="book-date-field">
+              <span class="bdf-label">Trả phòng</span>
+              <div class="bdf-val"><input type="date" id="checkout"></div>
+            </div>
+          </div>
+        </div>
+        <div class="book-guests">
+          <i class="fas fa-user-friends"></i>
+          <div class="book-guests-inner">
+            <span class="bg-label">Số khách</span>
+            <div class="bg-val">
+              <select>
+                <option>1 người lớn</option>
+                <option selected>2 người lớn</option>
+                <option>2 người lớn + 1 trẻ em</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div style="border:1.5px solid var(--border);border-radius:var(--r);padding:10px 12px;margin-bottom:12px">
+          <span style="font-size:.68rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px">Loại phòng</span>
+          <select style="border:none;outline:none;font-size:.9rem;font-weight:600;color:var(--text);background:transparent;width:100%;cursor:pointer">
+            <option>Ocean Deluxe King</option>
+<option>Premier Ocean View</option>
+<option>Family Beach Suite</option>
+          </select>
+        </div>
+        <div class="book-summary">
+          <div class="bs-row"><span class="bs-label">2.500.000₫ × 2 đêm</span><span class="bs-val">5.000.000₫</span></div>
+          <div class="bs-row"><span class="bs-label">Bữa sáng (2 người × 2 ngày)</span><span class="bs-val" style="color:var(--green)">Miễn phí</span></div>
+          <div class="bs-row"><span class="bs-label">Thuế &amp; phí dịch vụ (10%)</span><span class="bs-val">500.000₫</span></div>
+          <div class="bs-row"><span class="bs-label">Ưu đãi BookingHotel</span><span class="bs-val" style="color:var(--green)">-250.000₫</span></div>
+          <div class="bs-total">
+            <span>Tổng thanh toán</span>
+            <span class="bs-total-val">5.250.000₫</span>
+          </div>
+        </div>
+        <button class="btn-book-now" onclick="openModal()">
+          <i class="fas fa-lock"></i> Đặt Phòng Ngay
+        </button>
+        <button class="btn-wishlist-book" onclick="toggleWish(this)">
+          <i class="far fa-heart"></i> Lưu vào danh sách
+        </button>
+        <div class="book-trust">
+          <div class="bt-item"><i class="fas fa-check-circle"></i> Hủy miễn phí 48h</div>
+          <div class="bt-item"><i class="fas fa-lock"></i> Thanh toán an toàn</div>
+          <div class="bt-item"><i class="fas fa-medal"></i> Giá tốt nhất đảm bảo</div>
+          <div class="bt-item"><i class="fas fa-headset"></i> Hỗ trợ 24/7</div>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;margin-top:14px;box-shadow:var(--sh-sm)">
+      <div style="font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:6px"><i class="fas fa-info-circle" style="color:var(--blue)"></i> Thông tin quan trọng</div>
+      <div style="font-size:.78rem;color:var(--muted);line-height:1.7">
+        ✓ Check-in từ <strong>14:00</strong>, Check-out trước <strong>12:00</strong><br>
+        ✓ Xuất trình CCCD/Hộ chiếu khi nhận phòng<br>
+        ✓ Thẻ tín dụng cần cho khoản đặt cọc<br>
+        ✓ Không hoàn tiền nếu hủy trong 48 giờ<br>
+        ✓ <strong style="color:var(--red)">Chỉ còn 3 phòng view biển!</strong>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end detail-layout -->
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <a class="f-logo" href="home.html">BookingHotel<span>.com</span></a>
+        <p class="f-desc">Nền tảng đặt phòng khách sạn uy tín hàng đầu Việt Nam. Giá tốt nhất được đảm bảo, hủy miễn phí linh hoạt.</p>
+        <div class="f-socials">
+          <a class="f-soc" href="#"><i class="fab fa-facebook-f"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-instagram"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-tiktok"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="f-col"><h5>Hỗ Trợ</h5><ul>
+        <li><a href="#">Trung tâm trợ giúp</a></li>
+        <li><a href="#">Quản lý đặt phòng</a></li>
+        <li><a href="#">Chính sách hoàn tiền</a></li>
+        <li><a href="#">Liên hệ 24/7</a></li>
+      </ul></div>
+      <div class="f-col"><h5>Khám Phá</h5><ul>
+        <li><a href="double_room.html">Phòng Đôi</a></li>
+        <li><a href="#">Khách sạn 5 sao</a></li>
+        <li><a href="#">Resort biển</a></li>
+        <li><a href="#">Phú Quốc</a></li>
+      </ul></div>
+      <div class="f-col"><h5>Về Chúng Tôi</h5><ul>
+        <li><a href="#">Giới thiệu</a></li>
+        <li><a href="#">Điều khoản sử dụng</a></li>
+        <li><a href="#">Chính sách bảo mật</a></li>
+        <li><a href="#">Tuyển dụng</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 BookingHotel Vietnam. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-box">
+    <div class="modal-icon"><i class="fas fa-check-circle"></i></div>
+    <h2>Đặt Phòng Thành Công!</h2>
+    <p>Cảm ơn bạn đã tin tưởng <strong>BookingHotel</strong>. Email xác nhận đã được gửi. Chúng tôi sẽ liên hệ xác nhận trong 15 phút.</p>
+    <div class="modal-ref">Mã đặt phòng: <strong>BH-2026-54871</strong></div>
+    <div style="display:flex;gap:10px;justify-content:center">
+      <a href="home.html" class="btn-modal">Về Trang Chủ</a>
+      <button onclick="closeModal()" style="background:none;border:1.5px solid var(--border);border-radius:var(--r);padding:11px 20px;cursor:pointer;font-size:.88rem">Đóng</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(){document.getElementById('bookingModal').classList.add('open');}
+function closeModal(){document.getElementById('bookingModal').classList.remove('open');}
+document.getElementById('bookingModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+function toggleWish(btn){const i=btn.querySelector('i');if(i){i.classList.toggle('far');i.classList.toggle('fas');}}
+const t=new Date(),d1=new Date(t),d2=new Date(t);
+d1.setDate(t.getDate()+1);d2.setDate(t.getDate()+3);
+const fmt=d=>d.toISOString().split('T')[0];
+document.getElementById('checkin').value=fmt(d1);
+document.getElementById('checkout').value=fmt(d2);
+</script>
+</body>
+</html>

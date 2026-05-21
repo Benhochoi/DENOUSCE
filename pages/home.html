@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookingHotel — Đặt Phòng Khách Sạn Việt Nam</title>
+
+  <link rel="stylesheet" href="../asset/css/style.css">
+  <link rel="stylesheet" href="../asset/css/component.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+
+  <style>
+    .ui-datepicker {
+      font-size: .85rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.15);
+    }
+
+    .ui-datepicker-header {
+      background: #1a56db;
+      color: #fff;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .ui-datepicker-title {
+      color: #fff;
+    }
+
+    .ui-datepicker th {
+      color: #1a56db;
+    }
+
+    .ui-datepicker td a.ui-state-active,
+    .ui-datepicker td a.ui-state-highlight {
+      background: #1a56db;
+      color: #fff;
+      border-radius: 6px;
+    }
+
+    /* Dropdown menu Địa điểm */
+    .nav-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-dropdown > .h-nav-link {
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 230px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: 0 14px 35px rgba(0,0,0,0.22);
+  display: none;
+  z-index: 999;
+}
+
+    .nav-dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 13px;
+      border-radius: 10px;
+      color: #06172d;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-menu a:hover {
+      background: #eef2ff;
+      color: #1a56db;
+    }
+
+    /* Nền ảnh chính */
+    .home-image-bg {
+      background-image:
+        linear-gradient(rgba(4, 17, 35, 0.62), rgba(4, 17, 35, 0.58)),
+        url("../images/nightviewhotel.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding-bottom: 6cm;
+      margin-bottom: 52px;
+    }
+
+    .home-image-bg .hero {
+      background: transparent !important;
+    }
+
+    .home-image-bg .hero-wave {
+      display: none;
+    }
+
+    .home-image-bg .page-wrapper {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: 15px;
+    }
+
+    .home-image-bg .section-title {
+      color: #fff;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.45);
+    }
+
+    /* Slider loại phòng */
+    .room-slider-wrap {
+      position: relative;
+      overflow: visible;
+      margin-bottom: 20px;
+      padding: 0 52px;
+    }
+
+    .room-slider {
+      position: relative;
+    }
+
+    .room-slider .slick-list {
+      overflow: hidden;
+      border-radius: 14px;
+    }
+
+    .room-slider .slick-track {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .room-slider .slick-slide {
+      padding: 0 6px;
+      box-sizing: border-box;
+    }
+
+    .room-slider .rt-card {
+      margin: 0;
+      display: block !important;
+      height: 100%;
+    }
+
+    .room-slider .slick-prev,
+    .room-slider .slick-next {
+      z-index: 20;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.28);
+      transition: .25s ease;
+    }
+
+    .room-slider .slick-prev:hover,
+    .room-slider .slick-next:hover {
+      background: #ffc107;
+    }
+
+    .room-slider .slick-prev {
+      left: -50px;
+    }
+
+    .room-slider .slick-next {
+      right: -50px;
+    }
+
+    .room-slider .slick-prev:before,
+    .room-slider .slick-next:before {
+      font-size: 30px;
+      color: #06172d;
+      opacity: 1;
+      line-height: 1;
+    }
+
+    .room-slider .slick-dots {
+      bottom: -38px;
+    }
+
+    .room-slider .slick-dots li button:before {
+      color: #fff;
+      opacity: .7;
+      font-size: 10px;
+    }
+
+    .room-slider .slick-dots li.slick-active button:before {
+      color: #ffc107;
+      opacity: 1;
+    }
+
+    .deal-card {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+
+    .deal-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hotel-card {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .4s ease, transform .4s ease;
+    }
+
+    .hotel-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .room-slider-wrap {
+        padding: 0 36px;
+      }
+
+      .room-slider .slick-prev {
+        left: -34px;
+      }
+
+      .room-slider .slick-next {
+        right: -34px;
+      }
+
+      .room-slider .slick-prev,
+      .room-slider .slick-next {
+        width: 38px;
+        height: 38px;
+      }
+
+      .room-slider .slick-prev:before,
+      .room-slider .slick-next:before {
+        font-size: 24px;
+      }
+
+      .dropdown-menu {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <a class="logo" href="home.html">
+      <img src="../images/logo.png" style="width:50px; height:50px;" alt="logo">
+      BookingHotel<span class="logo-dot">.COM</span>
+    </a>
+
+    <nav class="header-nav">
+      <a class="h-nav-link active" href="home.html">
+        <i class="fas fa-home"></i> Trang Chủ
+      </a>
+
+      <a class="h-nav-link" href="#about">
+        <i class="fas fa-circle-info"></i> Về Chúng Tôi
+      </a>
+
+      <div class="nav-dropdown">
+        <a class="h-nav-link" href="javascript:void(0)">
+          <i class="fas fa-map-marker-alt"></i> Địa Điểm
+          <i class="fas fa-chevron-down"></i>
+        </a>
+
+        <div class="dropdown-menu">
+          <a href="../cities/ha-noi.html">
+            <i class="fas fa-location-dot"></i> Hà Nội
+          </a>
+
+          <a href="../cities/ho-chi-minh.html">
+            <i class="fas fa-location-dot"></i> TP. Hồ Chí Minh
+          </a>
+
+          <a href="../cities/da-nang.html">
+            <i class="fas fa-location-dot"></i> Đà Nẵng
+          </a>
+
+          <a href="../cities/phu-quoc.html">
+            <i class="fas fa-location-dot"></i> Phú Quốc
+          </a>
+        </div>
+      </div>
+
+      <a class="h-nav-link" href="#contact">
+        <i class="fas fa-phone"></i> Liên Hệ
+      </a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn-header btn-outline-w" href="#">
+        <i class="fas fa-globe"></i> VN · ₫
+      </a>
+      <a class="btn-header btn-outline-w" href="../user/login.html">Đăng nhập</a>
+      <a class="btn-header btn-yellow" href="../user/register.html">Đăng ký</a>
+    </div>
+  </div>
+</header>
+
+<div class="home-image-bg">
+
+  <div class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-title">Tìm Chỗ Nghỉ Hoàn Hảo Của Bạn</h1>
+      <p class="hero-sub">
+        Từ khách sạn 5 sao đến homestay ấm cúng — hơn 2.500 lựa chọn trên toàn Việt Nam
+      </p>
+
+      <div class="search-bar">
+        <div class="s-field" style="flex:2">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="s-field-inner">
+            <span class="s-field-label">Điểm đến hoặc tên chỗ nghỉ</span>
+            <input type="text" placeholder="Hà Nội, Đà Nẵng, Phú Quốc...">
+          </div>
+        </div>
+
+        <div class="s-field">
+          <i class="fas fa-calendar-alt"></i>
+          <div class="s-field-inner">
+            <span class="s-field-label">Nhận phòng</span>
+            <input type="text" id="checkin" class="date-pick" readonly placeholder="Chọn ngày..." autocomplete="off">
+          </div>
+        </div>
+
+        <div class="s-field">
+          <i class="fas fa-calendar-check"></i>
+          <div class="s-field-inner">
+            <span class="s-field-label">Trả phòng</span>
+            <input type="text" id="checkout" class="date-pick" readonly placeholder="Chọn ngày..." autocomplete="off">
+          </div>
+        </div>
+
+        <div class="s-field">
+          <i class="fas fa-user-friends"></i>
+          <div class="s-field-inner">
+            <span class="s-field-label">Khách &amp; Phòng</span>
+            <select>
+              <option>2 người lớn · 1 phòng</option>
+              <option>1 người lớn · 1 phòng</option>
+              <option>4 người lớn · 2 phòng</option>
+              <option>2 người lớn, 1 trẻ em · 1 phòng</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn-search" onclick="window.location='#hot-hotels'">
+          <i class="fas fa-search"></i> Tìm kiếm
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-wrapper">
+    <div class="section-header" id="room-types">
+      <h2 class="section-title">
+        <i class="fas fa-th-large"></i> Tìm theo loại chỗ nghỉ
+      </h2>
+    </div>
+
+    <div class="room-slider-wrap">
+      <div class="room-slider">
+
+        <a class="rt-card" href="#">
+          <div class="rt-img-wrap">
+            <img class="rt-img" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=400&q=80" alt="Phòng Đôi">
+            <span class="rt-pill yellow">PHỔ BIẾN</span>
+          </div>
+          <div class="rt-body">
+            <div class="rt-name">🛏️ Phòng Đôi</div>
+            <div class="rt-count">847 chỗ nghỉ</div>
+          </div>
+        </a>
+
+        <a class="rt-card" href="#">
+          <div class="rt-img-wrap">
+            <img class="rt-img" src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=400&q=80" alt="Phòng Đơn">
+            <span class="rt-pill">PHỔ BIẾN</span>
+          </div>
+          <div class="rt-body">
+            <div class="rt-name">👑 Phòng Đơn</div>
+            <div class="rt-count">312 chỗ nghỉ</div>
+          </div>
+        </a>
+
+        <a class="rt-card" href="#">
+          <div class="rt-img-wrap">
+            <img class="rt-img" src="https://images.unsplash.com/photo-1568495248636-6432b97bd949?auto=format&fit=crop&w=400&q=80" alt="Phòng Gia Đình">
+          </div>
+          <div class="rt-body">
+            <div class="rt-name">👨‍👩‍👧 Phòng Gia Đình</div>
+            <div class="rt-count">523 chỗ nghỉ</div>
+          </div>
+        </a>
+
+        <a class="rt-card" href="#">
+          <div class="rt-img-wrap">
+            <img class="rt-img" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&q=80" alt="Resort">
+            <span class="rt-pill yellow">MỚI</span>
+          </div>
+          <div class="rt-body">
+            <div class="rt-name">🏖️ Resort & Villa</div>
+            <div class="rt-count">198 chỗ nghỉ</div>
+          </div>
+        </a>
+
+        <a class="rt-card" href="#">
+          <div class="rt-img-wrap">
+            <img class="rt-img" src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=400&q=80" alt="Deluxe">
+          </div>
+          <div class="rt-body">
+            <div class="rt-name">✨ Phòng Deluxe</div>
+            <div class="rt-count">691 chỗ nghỉ</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="page-wrapper">
+
+  <div class="section-header" id="hot-hotels">
+    <h2 class="section-title">
+      <i class="fas fa-fire"></i> Khách sạn hot nhất Việt Nam
+    </h2>
+    <a class="section-link" href="#hot-hotels">
+      Xem tất cả <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+  <div class="hotels-grid">
+
+    <a class="hotel-card" href="../hotels/ha-noi/sofitel-legend-metropole-ha-noi.html">
+      <div class="hc-img-wrap">
+        <img class="hc-img" src="https://images.unsplash.com/photo-1549294413-26f195200c16?auto=format&fit=crop&w=600&q=80" alt="Sofitel Metropole">
+        <span class="hc-badge genius">Genius</span>
+        <button class="hc-fav" type="button"><i class="far fa-heart"></i></button>
+      </div>
+
+      <div class="hc-body">
+        <div class="hc-top">
+          <div>
+            <div class="hc-stars">★★★★★</div>
+            <div class="hc-name">Sofitel Legend Metropole Hà Nội</div>
+          </div>
+          <div class="hc-score-box">
+            <div class="hc-score-num">9.4</div>
+            <div class="hc-score-lbl">Xuất sắc</div>
+          </div>
+        </div>
+
+        <div class="hc-loc">
+          <i class="fas fa-map-marker-alt"></i> Hoàn Kiếm, Hà Nội
+        </div>
+
+        <div class="hc-tags">
+          <span class="hc-tag">Hủy miễn phí</span>
+          <span class="hc-tag green">Bao sáng</span>
+          <span class="hc-tag">Hồ bơi</span>
+        </div>
+
+        <div class="hc-footer">
+          <div class="hc-price-block">
+            <div class="hc-price-label">Phòng đôi từ</div>
+            <div class="hc-price-old">5.500.000₫</div>
+            <div class="hc-price">3.850.000₫</div>
+            <div class="hc-price-per">/đêm, đã bao gồm thuế</div>
+          </div>
+          <span class="btn-see-rooms">Xem phòng</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="hotel-card" href="../hotels/da-nang/intercontinental-da-nang-sun-peninsula.html">
+      <div class="hc-img-wrap">
+        <img class="hc-img" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" alt="InterContinental Da Nang">
+        <span class="hc-badge deal">-30%</span>
+        <button class="hc-fav" type="button"><i class="far fa-heart"></i></button>
+      </div>
+
+      <div class="hc-body">
+        <div class="hc-top">
+          <div>
+            <div class="hc-stars">★★★★★</div>
+            <div class="hc-name">InterContinental Đà Nẵng Sun Peninsula</div>
+          </div>
+          <div class="hc-score-box">
+            <div class="hc-score-num">9.2</div>
+            <div class="hc-score-lbl">Tuyệt vời</div>
+          </div>
+        </div>
+
+        <div class="hc-loc">
+          <i class="fas fa-map-marker-alt"></i> Sơn Trà, Đà Nẵng
+        </div>
+
+        <div class="hc-tags">
+          <span class="hc-tag">Bãi biển riêng</span>
+          <span class="hc-tag">Hồ bơi vô cực</span>
+          <span class="hc-tag green">Bao sáng</span>
+        </div>
+
+        <div class="hc-footer">
+          <div class="hc-price-block">
+            <div class="hc-price-label">Phòng đôi từ</div>
+            <div class="hc-price-old">6.000.000₫</div>
+            <div class="hc-price">4.200.000₫</div>
+            <div class="hc-price-per">/đêm, đã bao gồm thuế</div>
+          </div>
+          <span class="btn-see-rooms">Xem phòng</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="hotel-card" href="../hotels/phu-quoc/jw-marriott-phu-quoc-emerald-bay.html">
+      <div class="hc-img-wrap">
+        <img class="hc-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="JW Marriott Phu Quoc">
+        <button class="hc-fav" type="button"><i class="far fa-heart"></i></button>
+      </div>
+
+      <div class="hc-body">
+        <div class="hc-top">
+          <div>
+            <div class="hc-stars">★★★★★</div>
+            <div class="hc-name">JW Marriott Phú Quốc Emerald Bay</div>
+          </div>
+          <div class="hc-score-box">
+            <div class="hc-score-num">9.6</div>
+            <div class="hc-score-lbl">Hoàn hảo</div>
+          </div>
+        </div>
+
+        <div class="hc-loc">
+          <i class="fas fa-map-marker-alt"></i> Bãi Khem, Phú Quốc
+        </div>
+
+        <div class="hc-tags">
+          <span class="hc-tag">4 hồ bơi</span>
+          <span class="hc-tag green">Bao sáng</span>
+          <span class="hc-tag">Spa 5 sao</span>
+        </div>
+
+        <div class="hc-footer">
+          <div class="hc-price-block">
+            <div class="hc-price-label">Phòng đôi từ</div>
+            <div class="hc-price">5.100.000₫</div>
+            <div class="hc-price-per">/đêm, đã bao gồm thuế</div>
+          </div>
+          <span class="btn-see-rooms">Xem phòng</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="hotel-card" href="../hotels/ho-chi-minh/park-hyatt-saigon.html">
+      <div class="hc-img-wrap">
+        <img class="hc-img" src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=600&q=80" alt="Park Hyatt Saigon">
+        <span class="hc-badge genius">Genius</span>
+        <button class="hc-fav" type="button"><i class="far fa-heart"></i></button>
+      </div>
+
+      <div class="hc-body">
+        <div class="hc-top">
+          <div>
+            <div class="hc-stars">★★★★★</div>
+            <div class="hc-name">Park Hyatt Saigon Hotel</div>
+          </div>
+          <div class="hc-score-box">
+            <div class="hc-score-num">9.1</div>
+            <div class="hc-score-lbl">Tuyệt vời</div>
+          </div>
+        </div>
+
+        <div class="hc-loc">
+          <i class="fas fa-map-marker-alt"></i> Quận 1, TP. Hồ Chí Minh
+        </div>
+
+        <div class="hc-tags">
+          <span class="hc-tag">Hủy miễn phí</span>
+          <span class="hc-tag">Bar rooftop</span>
+          <span class="hc-tag green">Bao sáng</span>
+        </div>
+
+        <div class="hc-footer">
+          <div class="hc-price-block">
+            <div class="hc-price-label">Phòng đôi từ</div>
+            <div class="hc-price-old">3.500.000₫</div>
+            <div class="hc-price">2.750.000₫</div>
+            <div class="hc-price-per">/đêm, đã bao gồm thuế</div>
+          </div>
+          <span class="btn-see-rooms">Xem phòng</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="hotel-card" href="#">
+      <div class="hc-img-wrap">
+        <img class="hc-img" src="https://statics.vinpearl.com/styles/354x195/public/2025_03/Nha%20Trang%20Bay_1741333348.jpg.webp?itok=jYa7eJTm" alt="Vinpearl">
+        <span class="hc-badge deal">-25%</span>
+        <button class="hc-fav" type="button"><i class="far fa-heart"></i></button>
+      </div>
+
+      <div class="hc-body">
+        <div class="hc-top">
+          <div>
+            <div class="hc-stars">★★★★★</div>
+            <div class="hc-name">Vinpearl Resort & Spa Nha Trang Bay</div>
+          </div>
+          <div class="hc-score-box">
+            <div class="hc-score-num">8.8</div>
+            <div class="hc-score-lbl">Rất tốt</div>
+          </div>
+        </div>
+
+        <div class="hc-loc">
+          <i class="fas fa-map-marker-alt"></i> Đảo Hòn Tre, Nha Trang
+        </div>
+
+        <div class="hc-tags">
+          <span class="hc-tag">Water Park</span>
+          <span class="hc-tag">Cáp treo</span>
+          <span class="hc-tag green">Bao sáng</span>
+        </div>
+
+        <div class="hc-footer">
+          <div class="hc-price-block">
+            <div class="hc-price-label">Phòng đôi từ</div>
+            <div class="hc-price-old">2.500.000₫</div>
+            <div class="hc-price">1.850.000₫</div>
+            <div class="hc-price-per">/đêm, đã bao gồm thuế</div>
+          </div>
+          <span class="btn-see-rooms">Xem phòng</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title">
+      <i class="fas fa-tags"></i> Gói ưu đãi đặc biệt
+    </h2>
+    <a class="section-link" href="#">
+      Xem tất cả <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+  <div class="deals-grid">
+
+    <div class="deal-card">
+      <div class="dc-img-wrap">
+        <img class="dc-img" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80" alt="Deal 1">
+        <div class="dc-discount">-35%</div>
+        <div class="dc-timer"><i class="fas fa-clock"></i> Còn 2 ngày</div>
+      </div>
+
+      <div class="dc-body">
+        <div class="dc-label">Flash Sale</div>
+        <div class="dc-name">Gói Nghỉ Dưỡng Cuối Tuần</div>
+
+        <div class="dc-perks">
+          <span class="dc-perk"><i class="fas fa-check"></i> Bao sáng</span>
+          <span class="dc-perk"><i class="fas fa-check"></i> Spa miễn phí</span>
+          <span class="dc-perk"><i class="fas fa-check"></i> Late check-out 14:00</span>
+        </div>
+
+        <div class="dc-desc">
+          Nghỉ dưỡng 2 đêm tại khách sạn 4–5 sao, áp dụng Thứ 6 → Chủ Nhật.
+          Bao gồm bữa sáng buffet và một buổi spa thư giãn.
+        </div>
+
+        <div class="dc-footer">
+          <div>
+            <div class="dc-price-old">4.200.000₫</div>
+            <div class="dc-price">2.730.000₫</div>
+            <div class="dc-price-per">/đêm · 2 người</div>
+          </div>
+          <a class="btn-deal" href="#">Đặt ngay</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="deal-card">
+      <div class="dc-img-wrap">
+        <img class="dc-img" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80" alt="Deal 2">
+        <div class="dc-discount">-40%</div>
+        <div class="dc-timer"><i class="fas fa-fire"></i> Hot deal</div>
+      </div>
+
+      <div class="dc-body">
+        <div class="dc-label">✈️ Trọn Gói</div>
+        <div class="dc-name">Combo Phú Quốc 3N2Đ All-inclusive</div>
+
+        <div class="dc-perks">
+          <span class="dc-perk"><i class="fas fa-check"></i> Vé máy bay khứ hồi</span>
+          <span class="dc-perk"><i class="fas fa-check"></i> Đưa đón sân bay</span>
+          <span class="dc-perk"><i class="fas fa-check"></i> Tour 4 đảo</span>
+        </div>
+
+        <div class="dc-desc">
+          Trọn gói nghỉ dưỡng 3 ngày 2 đêm tại resort 5 sao Phú Quốc.
+          Vé bay HAN/SGN → PQC khứ hồi, đưa đón và tour đảo đã bao gồm.
+        </div>
+
+        <div class="dc-footer">
+          <div>
+            <div class="dc-price-old">8.500.000₫</div>
+            <div class="dc-price">5.100.000₫</div>
+            <div class="dc-price-per">/người · tất cả bao gồm</div>
+          </div>
+          <a class="btn-deal" href="#">Đặt ngay</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="deal-card">
+      <div class="dc-img-wrap">
+        <img class="dc-img" src="https://images.unsplash.com/photo-1560448075-bb485b067938?auto=format&fit=crop&w=600&q=80" alt="Deal 3">
+        <div class="dc-discount">-25%</div>
+        <div class="dc-timer"><i class="fas fa-star"></i> Mới nhất</div>
+      </div>
+
+      <div class="dc-body">
+        <div class="dc-label">Hạng Sang</div>
+        <div class="dc-name">Suite Đặc Biệt Hà Nội 1 Đêm</div>
+
+        <div class="dc-perks">
+          <span class="dc-perk"><i class="fas fa-check"></i> Phòng Suite 120m²</span>
+          <span class="dc-perk"><i class="fas fa-check"></i> Bữa tối rooftop</span>
+          <span class="dc-perk"><i class="fas fa-check"></i> Champagne chào đón</span>
+        </div>
+
+        <div class="dc-desc">
+          Một đêm sang trọng trong căn suite rộng 120m² tại trung tâm Hà Nội.
+          Bao gồm bữa tối lãng mạn tại nhà hàng rooftop và champagne chào đón.
+        </div>
+
+        <div class="dc-footer">
+          <div>
+            <div class="dc-price-old">6.800.000₫</div>
+            <div class="dc-price">5.100.000₫</div>
+            <div class="dc-price-per">/đêm · 2 người</div>
+          </div>
+          <a class="btn-deal" href="#">Đặt ngay</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div id="contact">
+        <a class="f-logo" href="home.html">
+          <img src="../images/logo.png" style="width:50px; height:50px;" alt="logo">
+          BookingHotel<span class="logo-dot">.COM</span>
+        </a>
+
+        <p class="f-desc">
+          Nền tảng đặt phòng khách sạn uy tín hàng đầu Việt Nam.
+          Giá tốt nhất được đảm bảo, hủy miễn phí linh hoạt.
+        </p>
+
+        <div class="f-socials">
+          <a class="f-soc" href="#"><i class="fab fa-facebook-f"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-instagram"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-tiktok"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="f-col">
+        <h5>Hỗ Trợ</h5>
+        <ul>
+          <li><a href="#">Trung tâm trợ giúp</a></li>
+          <li><a href="#">Quản lý đặt phòng</a></li>
+          <li><a href="#">Chính sách hoàn tiền</a></li>
+          <li><a href="#">Liên hệ 24/7</a></li>
+          <li><a href="#">Báo sự cố</a></li>
+        </ul>
+      </div>
+
+      <div class="f-col">
+        <h5>Khám Phá</h5>
+        <ul>
+          <li><a href="../cities/ha-noi.html">Hà Nội</a></li>
+          <li><a href="../cities/ho-chi-minh.html">TP. Hồ Chí Minh</a></li>
+          <li><a href="../cities/da-nang.html">Đà Nẵng</a></li>
+          <li><a href="../cities/phu-quoc.html">Phú Quốc</a></li>
+        </ul>
+      </div>
+
+      <div class="f-col" id="about">
+        <h5>Về Chúng Tôi</h5>
+        <ul>
+          <li><a href="#">Giới thiệu</a></li>
+          <li><a href="#">Điều khoản sử dụng</a></li>
+          <li><a href="#">Chính sách bảo mật</a></li>
+          <li><a href="#">Tuyển dụng</a></li>
+          <li><a href="#">Hợp tác kinh doanh</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 BookingHotel Vietnam. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<script src="../data/cities.js"></script>
+<script src="../data/hotels.js"></script>
+<script src="../data/orders.js"></script>
+<script>
+  $(function() {
+    var today = new Date();
+
+    var d1 = new Date(today);
+    d1.setDate(today.getDate() + 1);
+
+    var d2 = new Date(today);
+    d2.setDate(today.getDate() + 3);
+
+    $.datepicker.setDefaults({
+      dateFormat: 'dd/mm/yy',
+      minDate: 0,
+      changeMonth: true,
+      changeYear: false,
+      showAnim: 'slideDown',
+      dayNamesMin: ['CN','T2','T3','T4','T5','T6','T7'],
+      monthNames: [
+        'Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6',
+        'Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'
+      ],
+      firstDay: 1
+    });
+
+    $('#checkin').datepicker({
+      onSelect: function() {
+        var selected = $(this).datepicker('getDate');
+        var minCheckout = new Date(selected);
+
+        minCheckout.setDate(minCheckout.getDate() + 1);
+        $('#checkout').datepicker('option', 'minDate', minCheckout);
+
+        if ($('#checkout').datepicker('getDate') <= selected) {
+          $('#checkout').datepicker('setDate', minCheckout);
+        }
+      }
+    }).datepicker('setDate', d1);
+
+    $('#checkout').datepicker().datepicker('setDate', d2);
+
+    $('.room-slider').slick({
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2800,
+      dots: true,
+      arrows: true,
+      infinite: true,
+      speed: 500,
+      centerMode: false,
+      variableWidth: false,
+      cssEase: 'ease-in-out',
+      responsive: [
+        { breakpoint: 1024, settings: { slidesToShow: 3 } },
+        { breakpoint: 768,  settings: { slidesToShow: 2 } },
+        { breakpoint: 480,  settings: { slidesToShow: 1 } }
+      ]
+    });
+
+    function revealOnScroll() {
+      var windowBottom = $(window).scrollTop() + $(window).height();
+
+      $('.deal-card, .hotel-card').each(function(i) {
+        var elemTop = $(this).offset().top;
+
+        if (elemTop < windowBottom - 60) {
+          var $el = $(this);
+          setTimeout(function() {
+            $el.addClass('visible');
+          }, i * 80);
+        }
+      });
+    }
+
+    $(window).on('scroll', revealOnScroll);
+    revealOnScroll();
+
+    $(document).on('click', '.hc-fav, .hlc-fav', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      $(this).find('i').toggleClass('far fas');
+      $(this).toggleClass('saved');
+    });
+
+    $('.sf-chip').on('click', function() {
+      $(this).toggleClass('active');
+    });
+  });
+</script>
+
+</body>
+</html>

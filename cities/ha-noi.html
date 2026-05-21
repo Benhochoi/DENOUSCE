@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookingHotel — Khách sạn Hà Nội</title>
+
+  <link rel="stylesheet" href="../asset/css/style.css">
+  <link rel="stylesheet" href="../asset/css/component.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Dropdown menu giống trang chủ */
+    .nav-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-dropdown > .h-nav-link {
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 230px;
+      background: #fff;
+      border-radius: 14px;
+      padding: 8px;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.22);
+      display: none;
+      z-index: 999;
+    }
+
+    .nav-dropdown::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 100%;
+      width: 100%;
+      height: 12px;
+    }
+
+    .nav-dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 13px;
+      border-radius: 10px;
+      color: #06172d;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-menu a:hover {
+      background: #eef2ff;
+      color: #1a56db;
+    }
+
+    /* Nền ảnh Hà Nội */
+    .city-image-bg {
+  background-image:
+    linear-gradient(rgba(4, 17, 35, 0.18), rgba(4, 17, 35, 0.08)),
+    url("../images/hanoi.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding-bottom: 3cm;
+  margin-bottom: 45px;
+}
+
+    .city-hero {
+      color: #fff;
+      padding: 70px 20px 80px;
+      text-align: center;
+    }
+
+    .city-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .city-hero-title {
+      font-size: 40px;
+      line-height: 1.2;
+      font-weight: 800;
+      margin: 0 0 16px;
+      color: #fff;
+      text-shadow: 0 4px 14px rgba(0,0,0,0.35);
+    }
+
+    .city-hero-sub {
+      font-size: 18px;
+      line-height: 1.5;
+      margin: 0;
+      color: rgba(255,255,255,0.92);
+      font-weight: 400;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.35);
+    }
+
+    .city-wrapper {
+      max-width: 1200px;
+      margin: 0 auto 70px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .city-intro-wrapper {
+      max-width: 1200px;
+      margin: -35px auto 0;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .city-intro {
+      background: #fff;
+      border-radius: 18px;
+      padding: 26px 30px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+      margin-bottom: 0;
+    }
+
+    .city-intro h2 {
+      font-size: 28px;
+      line-height: 1.25;
+      margin: 0 0 12px;
+      color: #111827;
+      font-weight: 800;
+    }
+
+    .city-intro p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #5f6b7a;
+    }
+
+    .city-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .city-section-title {
+      font-size: 28px;
+      line-height: 1.25;
+      margin: 0;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .city-section-title i {
+      color: #1a56db;
+      margin-right: 8px;
+    }
+
+    .city-section-link {
+      color: #1a56db;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .city-section-link:hover {
+      text-decoration: underline;
+    }
+
+    .hotel-card {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .4s ease, transform .4s ease;
+    }
+
+    .hotel-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .city-hero {
+        padding: 55px 18px 65px;
+      }
+
+      .city-hero-title {
+        font-size: 32px;
+      }
+
+      .city-hero-sub {
+        font-size: 16px;
+      }
+
+      .city-intro {
+        padding: 22px;
+      }
+
+      .city-intro h2,
+      .city-section-title {
+        font-size: 24px;
+      }
+
+      .city-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .dropdown-menu {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <a class="logo" href="../pages/home.html">
+      <img src="../images/logo.png" style="width:50px; height:50px;" alt="logo">
+      BookingHotel<span class="logo-dot">.COM</span>
+    </a>
+
+    <nav class="header-nav">
+      <a class="h-nav-link" href="../pages/home.html">
+        <i class="fas fa-home"></i> Trang Chủ
+      </a>
+
+      <a class="h-nav-link" href="#about">
+        <i class="fas fa-circle-info"></i> Về Chúng Tôi
+      </a>
+
+      <div class="nav-dropdown">
+        <a class="h-nav-link active" href="javascript:void(0)">
+          <i class="fas fa-map-marker-alt"></i> Địa Điểm
+          <i class="fas fa-chevron-down"></i>
+        </a>
+
+        <div class="dropdown-menu">
+          <a href="ha-noi.html">
+            <i class="fas fa-location-dot"></i> Hà Nội
+          </a>
+
+          <a href="ho-chi-minh.html">
+            <i class="fas fa-location-dot"></i> TP. Hồ Chí Minh
+          </a>
+
+          <a href="da-nang.html">
+            <i class="fas fa-location-dot"></i> Đà Nẵng
+          </a>
+
+          <a href="phu-quoc.html">
+            <i class="fas fa-location-dot"></i> Phú Quốc
+          </a>
+        </div>
+      </div>
+
+      <a class="h-nav-link" href="#contact">
+        <i class="fas fa-phone"></i> Liên Hệ
+      </a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn-header btn-outline-w" href="#">
+        <i class="fas fa-globe"></i> VN · ₫
+      </a>
+      <a class="btn-header btn-outline-w" href="../user/login.html">Đăng nhập</a>
+      <a class="btn-header btn-yellow" href="../user/register.html">Đăng ký</a>
+    </div>
+  </div>
+</header>
+
+<div class="city-image-bg">
+
+  <section class="city-hero">
+    <div class="city-hero-inner">
+      <h1 class="city-hero-title">Khách Sạn Tại Hà Nội</h1>
+      <p class="city-hero-sub">
+        Khám phá những khách sạn nổi bật tại thủ đô Hà Nội — sang trọng, tiện nghi và dễ dàng đặt phòng
+      </p>
+    </div>
+  </section>
+
+  <div class="city-intro-wrapper">
+    <section class="city-intro">
+      <h2>Du lịch Hà Nội</h2>
+      <p>
+        Hà Nội là điểm đến nổi bật với phố cổ, hồ Hoàn Kiếm, ẩm thực truyền thống và nhiều khách sạn cao cấp.
+        Dưới đây là danh sách khách sạn thuộc thư mục <b>hotels/ha-noi/</b>.
+      </p>
+    </section>
+  </div>
+
+</div>
+
+<main class="city-wrapper">
+
+  <section id="ha-noi-hotels">
+    <div class="city-section-header">
+      <h2 class="city-section-title">
+        <i class="fas fa-hotel"></i> Khách sạn tại Hà Nội
+      </h2>
+
+      <a class="city-section-link" href="../pages/home.html">
+        Quay lại trang chủ <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="hotels-grid">
+
+      <a class="hotel-card" href="../hotels/ha-noi/sofitel-legend-metropole-ha-noi.html">
+        <div class="hc-img-wrap">
+          <img
+            class="hc-img"
+            src="https://images.unsplash.com/photo-1549294413-26f195200c16?auto=format&fit=crop&w=600&q=80"
+            alt="Sofitel Legend Metropole Hà Nội"
+          >
+          <span class="hc-badge genius">Genius</span>
+          <button class="hc-fav" type="button">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+
+        <div class="hc-body">
+          <div class="hc-top">
+            <div>
+              <div class="hc-stars">★★★★★</div>
+              <div class="hc-name">Sofitel Legend Metropole Hà Nội</div>
+            </div>
+
+            <div class="hc-score-box">
+              <div class="hc-score-num">9.4</div>
+              <div class="hc-score-lbl">Xuất sắc</div>
+            </div>
+          </div>
+
+          <div class="hc-loc">
+            <i class="fas fa-map-marker-alt"></i> Hoàn Kiếm, Hà Nội
+          </div>
+
+          <div class="hc-tags">
+            <span class="hc-tag">Hủy miễn phí</span>
+            <span class="hc-tag green">Bao sáng</span>
+            <span class="hc-tag">Hồ bơi</span>
+          </div>
+
+          <div class="hc-footer">
+            <div class="hc-price-block">
+              <div class="hc-price-label">Phòng đôi từ</div>
+              <div class="hc-price-old">5.500.000₫</div>
+              <div class="hc-price">3.850.000₫</div>
+              <div class="hc-price-per">/đêm, đã bao gồm thuế</div>
+            </div>
+
+            <span class="btn-see-rooms">Xem phòng</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div id="contact">
+        <a class="f-logo" href="../pages/home.html">
+          <img src="../images/logo.png" style="width:50px; height:50px;" alt="logo">
+          BookingHotel<span class="logo-dot">.COM</span>
+        </a>
+
+        <p class="f-desc">
+          Nền tảng đặt phòng khách sạn uy tín hàng đầu Việt Nam.
+          Giá tốt nhất được đảm bảo, hủy miễn phí linh hoạt.
+        </p>
+
+        <div class="f-socials">
+          <a class="f-soc" href="#"><i class="fab fa-facebook-f"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-instagram"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-tiktok"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="f-col">
+        <h5>Hỗ Trợ</h5>
+        <ul>
+          <li><a href="#">Trung tâm trợ giúp</a></li>
+          <li><a href="#">Quản lý đặt phòng</a></li>
+          <li><a href="#">Chính sách hoàn tiền</a></li>
+          <li><a href="#">Liên hệ 24/7</a></li>
+          <li><a href="#">Báo sự cố</a></li>
+        </ul>
+      </div>
+
+      <div class="f-col">
+        <h5>Khám Phá</h5>
+        <ul>
+          <li><a href="ha-noi.html">Hà Nội</a></li>
+          <li><a href="ho-chi-minh.html">TP. Hồ Chí Minh</a></li>
+          <li><a href="da-nang.html">Đà Nẵng</a></li>
+          <li><a href="phu-quoc.html">Phú Quốc</a></li>
+        </ul>
+      </div>
+
+      <div class="f-col" id="about">
+        <h5>Về Chúng Tôi</h5>
+        <ul>
+          <li><a href="#">Giới thiệu</a></li>
+          <li><a href="#">Điều khoản sử dụng</a></li>
+          <li><a href="#">Chính sách bảo mật</a></li>
+          <li><a href="#">Tuyển dụng</a></li>
+          <li><a href="#">Hợp tác kinh doanh</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 BookingHotel Vietnam. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../data/cities.js"></script>
+<script src="../data/hotels.js"></script>
+<script>
+  function revealHotelCards() {
+    const windowBottom = window.scrollY + window.innerHeight;
+
+    document.querySelectorAll('.hotel-card').forEach(function(card, index) {
+      const cardTop = card.getBoundingClientRect().top + window.scrollY;
+
+      if (cardTop < windowBottom - 60) {
+        setTimeout(function() {
+          card.classList.add('visible');
+        }, index * 80);
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealHotelCards);
+  window.addEventListener('load', revealHotelCards);
+
+  document.querySelectorAll('.hc-fav').forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const icon = button.querySelector('i');
+      icon.classList.toggle('far');
+      icon.classList.toggle('fas');
+      button.classList.toggle('saved');
+    });
+  });
+</script>
+
+</body>
+</html>
